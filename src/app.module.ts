@@ -5,13 +5,15 @@ import { CoursesController } from './courses/courses.controller';
 import { CoursesService } from './courses/courses.service';
 import { CoursesModule } from './courses/courses.module';
 import { DatabaseModule } from './database/database.module';
-
-
-
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [CoursesModule, DatabaseModule],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ConfigModule.forRoot({ isGlobal: true }),
+        CoursesModule,
+        DatabaseModule,
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
